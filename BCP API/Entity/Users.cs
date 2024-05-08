@@ -21,5 +21,8 @@ namespace BCP_API.Entity
         public string? Department { get; set; }
         public string? Project { get; set; }
         public string? Group { get; set; }
+        public string? Role { get; set; }
+
+
     }
 }

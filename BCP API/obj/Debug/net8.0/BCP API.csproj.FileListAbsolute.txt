@@ -1,0 +1,33 @@
+D:\repos\bcp\BCP API\bin\Debug\net8.0\appsettings.Development.json
+D:\repos\bcp\BCP API\bin\Debug\net8.0\appsettings.json
+D:\repos\bcp\BCP API\bin\Debug\net8.0\BCP API.exe
+D:\repos\bcp\BCP API\bin\Debug\net8.0\BCP API.deps.json
+D:\repos\bcp\BCP API\bin\Debug\net8.0\BCP API.runtimeconfig.json
+D:\repos\bcp\BCP API\bin\Debug\net8.0\BCP API.dll
+D:\repos\bcp\BCP API\bin\Debug\net8.0\BCP API.pdb
+D:\repos\bcp\BCP API\bin\Debug\net8.0\Microsoft.OpenApi.dll
+D:\repos\bcp\BCP API\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\repos\bcp\BCP API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\repos\bcp\BCP API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\repos\bcp\BCP API\obj\Debug\net8.0\BCP API.csproj.AssemblyReference.cache
+D:\repos\bcp\BCP API\obj\Debug\net8.0\BCP API.GeneratedMSBuildEditorConfig.editorconfig
+D:\repos\bcp\BCP API\obj\Debug\net8.0\BCP API.AssemblyInfoInputs.cache
+D:\repos\bcp\BCP API\obj\Debug\net8.0\BCP API.AssemblyInfo.cs
+D:\repos\bcp\BCP API\obj\Debug\net8.0\BCP API.csproj.CoreCompileInputs.cache
+D:\repos\bcp\BCP API\obj\Debug\net8.0\BCP API.MvcApplicationPartsAssemblyInfo.cs
+D:\repos\bcp\BCP API\obj\Debug\net8.0\BCP API.MvcApplicationPartsAssemblyInfo.cache
+D:\repos\bcp\BCP API\obj\Debug\net8.0\BCP API.sourcelink.json
+D:\repos\bcp\BCP API\obj\Debug\net8.0\staticwebassets.build.json
+D:\repos\bcp\BCP API\obj\Debug\net8.0\staticwebassets.development.json
+D:\repos\bcp\BCP API\obj\Debug\net8.0\staticwebassets\msbuild.BCP API.Microsoft.AspNetCore.StaticWebAssets.props
+D:\repos\bcp\BCP API\obj\Debug\net8.0\staticwebassets\msbuild.build.BCP API.props
+D:\repos\bcp\BCP API\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.BCP API.props
+D:\repos\bcp\BCP API\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.BCP API.props
+D:\repos\bcp\BCP API\obj\Debug\net8.0\staticwebassets.pack.json
+D:\repos\bcp\BCP API\obj\Debug\net8.0\scopedcss\bundle\BCP API.styles.css
+D:\repos\bcp\BCP API\obj\Debug\net8.0\BCP API.csproj.Up2Date
+D:\repos\bcp\BCP API\obj\Debug\net8.0\BCP API.dll
+D:\repos\bcp\BCP API\obj\Debug\net8.0\refint\BCP API.dll
+D:\repos\bcp\BCP API\obj\Debug\net8.0\BCP API.pdb
+D:\repos\bcp\BCP API\obj\Debug\net8.0\BCP API.genruntimeconfig.cache
+D:\repos\bcp\BCP API\obj\Debug\net8.0\ref\BCP API.dll
