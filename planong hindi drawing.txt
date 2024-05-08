@@ -1,0 +1,7 @@
+BCP Modules
+
+Login Page
+Reset Password Page
+BCP Entry Page (user declare his/her BCP Status on this page)
+BCP User Dashboard (Show all BCP records/history)
+Add/Edit/Delete Employee Page (Crud for Admin)
