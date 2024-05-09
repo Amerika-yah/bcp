@@ -1,7 +1,8 @@
 BCP Modules
 
-Add/Edit/Delete Employee Page (Crud for Admin)
-Reset Password Page
-Login Page
-BCP Entry Page (user declare his/her BCP Status on this page)
-BCP User Dashboard (Show all BCP records/history)
+AdminController - Add/Edit/Delete Employee Page (Crud for Admin) - Jmar
+AdminController - Dashboard  - Jmar
+LoginController - Reset Password Page  - Jabez
+LoginController - Login Page  - Jabez
+HomeController - BCP Entry Page (user declare his/her BCP Status on this page)
+HomeController - BCP User Dashboard (Show all BCP records/history)
