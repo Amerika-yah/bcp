@@ -22,6 +22,10 @@ namespace BCP_API.Entity
         public string? Project { get; set; }
         public string? Group { get; set; }
         public string? Role { get; set; }
+        public bool? IsAdmin { get; set; } = false;
+        public bool? IsPasswordReset { get; set;} = false;
+        public DateTime? LastPasswordReset { get; set; }
+        public bool? IsActive { get; set; } = false;
 
 
     }
