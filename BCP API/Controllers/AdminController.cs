@@ -3,6 +3,7 @@ using BCP_API.Entity;
 using BCP_API.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace BCP_API.Controllers
 {
@@ -81,19 +82,53 @@ namespace BCP_API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post()
+        public IActionResult Post(AddUserViewModel model)
         {
+            BaseResponseModel response = new BaseResponseModel();
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var postedModel = new Users()
+                    {
+                        EmpID = model.EmpID,
+                        Password = "FirstActivation",
+                        Firstname = model.Firstname,
+                        Lastname = model.Lastname,
+                        Email = model.Email,
+                        Department = model.Department,
+                        Project = model.Project,
+                        Group = model.Group,
+                        Role = model.Role
+                    };
+                    _dbContext.Users.Add(postedModel);
+                    _dbContext.SaveChanges();
 
 
+                    response.Status = false;
+                    response.Message = "Saved successfully.";
+                    response.Data = postedModel;
 
+                    return Ok(response);
+                }
+                else 
+                {
+                    response.Status = false;
+                    response.Message = "Validation Failed.";
+                    response.Data = ModelState;   
+                    return BadRequest(response); 
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = ex.Message;
+                Console.WriteLine(response.Message);
 
-
-            return View();
+                return BadRequest(response);
+            }
         }
-
-
-
-
 
 
 
