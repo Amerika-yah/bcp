@@ -92,9 +92,44 @@ namespace BCP_API.Controllers
 
         // TODO: Forgot Password
         [HttpPost("forgot-password")]
-        public IActionResult ForgotPassword()
+        public IActionResult ForgotPassword(ForgotPasswordViewModel model)
         {
-            return View();
+            BaseResponseModel response = new BaseResponseModel();
+
+            try
+            {
+                var encryptedOldPassword = GetMD5(model.OldPassword);
+                var encryptedNewPassword = GetMD5(model.NewPassword);
+
+                var result = _dbContext.Users.SingleOrDefault(u => u.EmpID.Equals(model.EmpID) && u.Password.Equals(encryptedOldPassword));
+
+                if (result == null)
+                {
+                    response.Status = false;
+                    response.Message = "User Not Found.";
+
+                    return BadRequest(response);
+                }
+                else
+                {
+                    result.Password = encryptedNewPassword;
+                    _dbContext.SaveChanges();
+
+                    response.Status = true;
+                    response.Message = "Success";
+                    response.Data = result;
+
+                    return Ok(response);
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = ex.Message;
+                Console.WriteLine(response.Message);
+
+                return BadRequest(response);
+            }
         }
 
         [NonAction]
