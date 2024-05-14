@@ -4,9 +4,13 @@ using BCP_API.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Data;
+using System.Text.RegularExpressions;
 
 namespace BCP_API.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class AdminController : Controller
     {
         private readonly BCPDbContext _dbContext;
@@ -14,11 +18,6 @@ namespace BCP_API.Controllers
         public AdminController(BCPDbContext dbContext)
         {
             _dbContext = dbContext;
-        }
-
-        public IActionResult Index()
-        {
-            return View();
         }
 
         [HttpGet]
@@ -29,7 +28,7 @@ namespace BCP_API.Controllers
             try
             {
                 var userCount = _dbContext.Users.Count();
-                var userList = _dbContext.Users.Include(x => x.EmpID).Skip(pageIndex * pageSize).Take(pageSize).ToList();
+                var userList = _dbContext.Users.Skip(pageIndex * pageSize).Take(pageSize).ToList();
 
                 response.Status = true;
                 response.Message = "Success";
@@ -55,9 +54,9 @@ namespace BCP_API.Controllers
 
             try
             {
-                var user = _dbContext.Users.Include(x => x.EmpID).Where(x => x.id == id).FirstOrDefault();
+                var user = _dbContext.Users.Where(x => x.EmpID == id).FirstOrDefault();
 
-                if(user != null)
+                if(user == null)
                 {
                     response.Status = false;
                     response.Message = "User Not Found.";
@@ -90,6 +89,15 @@ namespace BCP_API.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    var users = _dbContext.Users.Where(x => model.EmpID.ToString().Contains(x.EmpID.ToString())).ToList();
+
+                    if(users.Count > 0)
+                    {
+                        response.Status = false;
+                        response.Message = "Users Not Found.";
+                        return BadRequest(response);
+                    }
+
                     var postedModel = new Users()
                     {
                         EmpID = model.EmpID,
@@ -130,6 +138,64 @@ namespace BCP_API.Controllers
             }
         }
 
+
+        [HttpPut]
+        public IActionResult Put(AddUserViewModel model)
+        {
+            BaseResponseModel response = new BaseResponseModel();
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var user = _dbContext.Users.Where(x => x.EmpID == model.EmpID).FirstOrDefault();
+                    if (user != null)
+                    {
+                        user.EmpID = model.EmpID;
+                        user.Password = "FirstActivation";
+                        user.Firstname = model.Firstname;
+                        user.Lastname = model.Lastname;
+                        user.Email = model.Email;
+                        user.Department = model.Department;
+                        user.Project = model.Project;
+                        user.Group = model.Group;
+                        user.Role = model.Role;
+
+                        _dbContext.SaveChanges();
+
+                        response.Status = false;
+                        response.Message = "Saved successfully.";
+                        response.Data = model;
+
+                        return Ok(response);
+                    }
+                    else
+                    {
+                        response.Status = false;
+                        response.Message = "Update Failed.";
+                        response.Data = ModelState;
+                        return BadRequest(response);
+                    }
+
+
+                }
+                else
+                {
+                    response.Status = false;
+                    response.Message = "Validation Failed.";
+                    response.Data = ModelState;
+                    return BadRequest(response);
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = ex.Message;
+                Console.WriteLine(response.Message);
+
+                return BadRequest(response);
+            }
+        }
 
 
     }
