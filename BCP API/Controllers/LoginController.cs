@@ -21,6 +21,22 @@ namespace BCP_API.Controllers
             _dbContext = dbContext;
         }
 
+        [NonAction]
+        public static string GetMD5(string text)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] fromData = Encoding.UTF8.GetBytes(text);
+            byte[] targetData = md5.ComputeHash(fromData);
+            string byteToString = null;
+
+            for (int i = 0; i < targetData.Length; i++)
+            {
+                byteToString += targetData[i].ToString("x2");
+            }
+
+            return byteToString;
+        }
+
         [HttpGet]
         public IActionResult GetUsers()
         {
@@ -132,20 +148,6 @@ namespace BCP_API.Controllers
             }
         }
 
-        [NonAction]
-        public static string GetMD5(string text)
-        {
-            MD5 md5 = new MD5CryptoServiceProvider();
-            byte[] fromData = Encoding.UTF8.GetBytes(text);
-            byte[] targetData = md5.ComputeHash(fromData);
-            string byteToString = null;
-
-            for (int i = 0; i < targetData.Length; i++)
-            {
-                byteToString += targetData[i].ToString("x2");
-            }
-
-            return byteToString;
-        }
+        
     }
 }
