@@ -198,5 +198,39 @@ namespace BCP_API.Controllers
         }
 
 
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            BaseResponseModel response = new BaseResponseModel();
+            try
+            {
+                var movie = _dbContext.Users.Where(x => x.EmpID == id).FirstOrDefault();
+
+                if (movie == null)
+                {
+                    response.Status = false;
+                    response.Message = "Invalid Movie Record.";
+
+                    return BadRequest(response);
+                }
+
+                _dbContext.Users.Remove(movie);
+                _dbContext.SaveChanges();
+
+                response.Status = true;
+                response.Message = "Deleted Successfully";
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = "Something went wrong: " + ex.Message;
+
+                return BadRequest(response);
+            }
+        }
+
+
     }
 }
