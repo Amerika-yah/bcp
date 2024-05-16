@@ -37,33 +37,6 @@ namespace BCP_API.Controllers
             return byteToString;
         }
 
-        [HttpGet]
-        public IActionResult GetUsers()
-        {
-            BaseResponseModel response = new BaseResponseModel();
-
-            try
-            {
-                var userCount = _dbContext.Users.Count();
-                var userList = _dbContext.Users.ToList();
-
-                response.Status = true;
-                response.Message = "Success";
-                response.Data = new { Users = userList, Count = userCount };
-
-                //return View();
-                return Ok(response);
-            }
-            catch (Exception ex)
-            {
-                response.Status = false;
-                response.Message = ex.Message;
-                Console.WriteLine(response.Message);
-                //throw;
-                return BadRequest(response);
-            }
-        }
-
         [HttpPost("{email}/{password}")]
         public IActionResult Login(string email, string password)
         {
@@ -148,6 +121,32 @@ namespace BCP_API.Controllers
             }
         }
 
-        
+        [HttpGet]
+        public IActionResult GetUsers()
+        {
+            BaseResponseModel response = new BaseResponseModel();
+
+            try
+            {
+                var userCount = _dbContext.Users.Count();
+                var userList = _dbContext.Users.ToList();
+
+                response.Status = true;
+                response.Message = "Success";
+                response.Data = new { Users = userList, Count = userCount };
+
+                //return View();
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = ex.Message;
+                Console.WriteLine(response.Message);
+                //throw;
+                return BadRequest(response);
+            }
+        }
+
     }
 }
