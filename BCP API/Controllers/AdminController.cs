@@ -47,6 +47,66 @@ namespace BCP_API.Controllers
             }
         }
 
+
+        [HttpPost]
+        public IActionResult AddUser(AddUserViewModel model)
+        {
+            BaseResponseModel response = new BaseResponseModel();
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var users = _dbContext.Users.Where(x => model.EmpID.ToString().Contains(x.EmpID.ToString())).ToList();
+
+                    if (users.Count > 0)
+                    {
+                        response.Status = false;
+                        response.Message = "Users Not Found.";
+                        return BadRequest(response);
+                    }
+
+                    var postedModel = new Users()
+                    {
+                        EmpID = model.EmpID,
+                        Password = "FirstActivation",
+                        Firstname = model.Firstname,
+                        Lastname = model.Lastname,
+                        Email = model.Email,
+                        Department = model.Department,
+                        Project = model.Project,
+                        Group = model.Group,
+                        Role = model.Role
+                    };
+                    _dbContext.Users.Add(postedModel);
+                    _dbContext.SaveChanges();
+
+
+                    response.Status = false;
+                    response.Message = "Saved successfully.";
+                    response.Data = postedModel;
+
+                    return Ok(response);
+                }
+                else
+                {
+                    response.Status = false;
+                    response.Message = "Validation Failed.";
+                    response.Data = ModelState;
+                    return BadRequest(response);
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = ex.Message;
+                Console.WriteLine(response.Message);
+
+                return BadRequest(response);
+            }
+        }
+
+
         [HttpGet("{id}")]
         public IActionResult GetUserById(int id)
         {
@@ -80,67 +140,9 @@ namespace BCP_API.Controllers
             }
         }
 
-        [HttpPost]
-        public IActionResult Post(AddUserViewModel model)
-        {
-            BaseResponseModel response = new BaseResponseModel();
-
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    var users = _dbContext.Users.Where(x => model.EmpID.ToString().Contains(x.EmpID.ToString())).ToList();
-
-                    if(users.Count > 0)
-                    {
-                        response.Status = false;
-                        response.Message = "Users Not Found.";
-                        return BadRequest(response);
-                    }
-
-                    var postedModel = new Users()
-                    {
-                        EmpID = model.EmpID,
-                        Password = "FirstActivation",
-                        Firstname = model.Firstname,
-                        Lastname = model.Lastname,
-                        Email = model.Email,
-                        Department = model.Department,
-                        Project = model.Project,
-                        Group = model.Group,
-                        Role = model.Role
-                    };
-                    _dbContext.Users.Add(postedModel);
-                    _dbContext.SaveChanges();
-
-
-                    response.Status = false;
-                    response.Message = "Saved successfully.";
-                    response.Data = postedModel;
-
-                    return Ok(response);
-                }
-                else 
-                {
-                    response.Status = false;
-                    response.Message = "Validation Failed.";
-                    response.Data = ModelState;   
-                    return BadRequest(response); 
-                }
-            }
-            catch (Exception ex)
-            {
-                response.Status = false;
-                response.Message = ex.Message;
-                Console.WriteLine(response.Message);
-
-                return BadRequest(response);
-            }
-        }
-
 
         [HttpPut]
-        public IActionResult Put(AddUserViewModel model)
+        public IActionResult UpdateUser(AddUserViewModel model)
         {
             BaseResponseModel response = new BaseResponseModel();
 
