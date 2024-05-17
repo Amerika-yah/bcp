@@ -40,7 +40,7 @@ namespace BCP_API.Controllers
             catch (Exception ex)
             {
                 response.Status = false;
-                response.Message = ex.Message;
+                response.Message = "Error getting Users: " + ex.Message;
                 Console.WriteLine(response.Message);
                 //throw;
                 return BadRequest(response);
@@ -99,7 +99,7 @@ namespace BCP_API.Controllers
             catch (Exception ex)
             {
                 response.Status = false;
-                response.Message = ex.Message;
+                response.Message = "Error adding Users: " + ex.Message;
                 Console.WriteLine(response.Message);
 
                 return BadRequest(response);
@@ -133,7 +133,7 @@ namespace BCP_API.Controllers
             catch (Exception ex)
             {
                 response.Status = false;
-                response.Message = ex.Message;
+                response.Message = "Error get User by Id: " + ex.Message;
                 Console.WriteLine(response.Message);
 
                 return BadRequest(response);
@@ -192,7 +192,7 @@ namespace BCP_API.Controllers
             catch (Exception ex)
             {
                 response.Status = false;
-                response.Message = ex.Message;
+                response.Message = "Error updating User: " + ex.Message;
                 Console.WriteLine(response.Message);
 
                 return BadRequest(response);
@@ -227,7 +227,7 @@ namespace BCP_API.Controllers
             catch (Exception ex)
             {
                 response.Status = false;
-                response.Message = "Something went wrong: " + ex.Message;
+                response.Message = "Error deleting User: " + ex.Message;
 
                 return BadRequest(response);
             }
