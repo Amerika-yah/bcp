@@ -16,6 +16,7 @@ function App() {
         </Navbar>
         <Switch>
           {/* <Route exact path="/" Component={() => } */}
+          <Route exact path="/admin/dashboards" component={Actors} />
         </Switch>
       </BrowserRouter>
     </Container>
