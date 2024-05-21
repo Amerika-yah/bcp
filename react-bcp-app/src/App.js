@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { BrowserRouter, Route } from 'react-router-dom';
+import Users from './pages/admin/dashboard';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
           </Nav>
         </Navbar>
         <Switch>
-          {/* <Route exact path="/" Component={() => } */}
+          <Route exact path="/" Component={() => <Users/>} />
           <Route exact path="/admin/dashboards" component={Actors} />
         </Switch>
       </BrowserRouter>
