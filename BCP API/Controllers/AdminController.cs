@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Data;
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace BCP_API.Controllers
@@ -18,6 +20,22 @@ namespace BCP_API.Controllers
         public AdminController(BCPDbContext dbContext)
         {
             _dbContext = dbContext;
+        }
+
+        [NonAction]
+        public static string GetMD5(string text)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] fromData = Encoding.UTF8.GetBytes(text);
+            byte[] targetData = md5.ComputeHash(fromData);
+            string byteToString = null;
+
+            for (int i = 0; i < targetData.Length; i++)
+            {
+                byteToString += targetData[i].ToString("x2");
+            }
+
+            return byteToString;
         }
 
         [HttpGet]
@@ -69,7 +87,7 @@ namespace BCP_API.Controllers
                     var postedModel = new Users()
                     {
                         EmpID = model.EmpID,
-                        Password = "FirstActivation",
+                        Password = GetMD5("FirstActivation"),
                         Firstname = model.Firstname,
                         Lastname = model.Lastname,
                         Email = model.Email,
@@ -154,7 +172,7 @@ namespace BCP_API.Controllers
                     if (user != null)
                     {
                         user.EmpID = model.EmpID;
-                        user.Password = "FirstActivation";
+                        user.Password = GetMD5(model.Password);
                         user.Firstname = model.Firstname;
                         user.Lastname = model.Lastname;
                         user.Email = model.Email;
