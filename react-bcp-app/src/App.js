@@ -30,7 +30,7 @@ function App() {
         </Navbar>
         <Routes>
           <Route exact path="/" Component={() => <Users />} />
-          <Route exact path="/admin/dashboards" Component={Login} />
+          <Route exact path="/login" Component={Login} />
         </Routes>
       </BrowserRouter>
     </Container>
