@@ -1,7 +1,9 @@
 import React from "react";
 import { Row, Col, Button } from 'react-bootstrap';
 
-// import MovieList from '../components/userlist.js';
+import UserList from "../../components/admin/userlist";
+import CreateUserModel from "../../components/admin/create-user-model";
+
 
 const Dashboard = () => {
 
@@ -16,6 +18,11 @@ const Dashboard = () => {
                 <Button className="float-right" onClick={() => {}}>Add User</Button>
             </Col>
         </Row>
+
+        <UserList />
+        <CreateUserModel />
+
+
         </>
     )
 }
