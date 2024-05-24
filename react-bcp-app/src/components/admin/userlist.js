@@ -29,7 +29,8 @@ const UserList = () => {
 
     return (
         <>
-            {/* {users && users !== [] ?  */}
+          {/* |there's an error on this condition| */}
+            {/* {users && users !== [] ? */}
             {users && users.items ?
             users.map((m, i) => <UserItem key={i} data={m} />)
         : ""}

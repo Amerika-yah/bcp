@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 
 const CreateUserModel = () => {
-    const[movies, setMovies] = useState(null);
-    const[moviesCount, setMoviesCount] = useState(0);
+    const[users, setUsers] = useState(null);
+    const[usersCount, setUsersCount] = useState(0);
     const[page, setPage] = useState(0);
 
     useEffect(() => {
